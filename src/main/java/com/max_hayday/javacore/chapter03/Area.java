@@ -1,4 +1,4 @@
-package com.max_hayday.javacore.chapter02;
+package com.max_hayday.javacore.chapter03;
 
 public class Area {
     public static void main(String[] args) {
