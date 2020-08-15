@@ -6,4 +6,7 @@ public class CommandLine {
             System.out.println("args[" + i + "]: " + args[i]);
         }
     }
+    public class Hi{
+
+    }
 }
