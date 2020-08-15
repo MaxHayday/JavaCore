@@ -1,6 +1,6 @@
-package com.max_hayday.javacore.Chapter09.p2;
+package com.max_hayday.javacore.chapter09.p2;
 
-import com.max_hayday.javacore.Chapter09.p1.Protection;
+import com.max_hayday.javacore.chapter09.p1.Protection;
 
 public class OtherPackage {
     OtherPackage() {

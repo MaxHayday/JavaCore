@@ -1,4 +1,4 @@
-package com.max_hayday.javacore.Chapter09.p1;
+package com.max_hayday.javacore.chapter09.p1;
 
 public class SamePackage {
     SamePackage() {
