@@ -25,17 +25,17 @@ public class CopyFile {
                 i = fin.read();
                 if (i != -1) fout.write(i);
             } while (i != -1);
-        } catch (IIOException e) {
+        } catch (IOException e) {
             System.out.println("Error input-output: " + e);
         } finally {
             try {
                 if (fin != null) fin.close();
-            } catch (IIOException e2) {
+            } catch (IOException e2) {
                 System.out.println("Error closing file input");
             }
             try {
                 if (fout != null) fout.close();
-            } catch (IIOException e2) {
+            } catch (IOException e2) {
                 System.out.println("Error closing file output");
             }
         }
