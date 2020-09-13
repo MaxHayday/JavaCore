@@ -1,11 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<applet code="SimpleApplet" width="200" height="60"></applet>
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<applet code="SimpleApplet" width="200" height="60"></applet>-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->
+import java.applet.Applet;
+import java.awt.*;
+
+public class SimpleApplet extends Applet {
+    @Override
+    public void paint(Graphics g) {
+        g.drawString("Simple applet", 20, 20);
+    }
+}
