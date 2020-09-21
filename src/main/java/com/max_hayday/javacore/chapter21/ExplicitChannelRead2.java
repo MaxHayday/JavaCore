@@ -3,37 +3,34 @@ package com.max_hayday.javacore.chapter21;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SeekableByteChannel;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 
-public class ExplicitChannelRead {
+public class ExplicitChannelRead2 {
     public static void main(String[] args) {
         int count;
-        Path filePath = null;
-        //first get the path to the file
-        try {
-            filePath = Paths.get("test.txt");
-        } catch (InvalidPathException e) {
-            System.out.println("Path Error " + e);
-            return;
-        }
-        //after get channel to this file in bloc operator try with resources
-        try (SeekableByteChannel fChan = Files.newByteChannel(filePath)) {
-            //allocate memory for a buffer
+        //Here channel is opening for path, returned of method Paths.get() like object Path type.
+        //Variable filepath is no needed
+        try (SeekableByteChannel fChan = Files.newByteChannel(Paths.get("test.txt"))) {
+            //allocate memory fot a buffer
             ByteBuffer mBuf = ByteBuffer.allocate(128);
             do {
-                //read date from file in to the buffer
+                //read data from file to buffer
                 count = fChan.read(mBuf);
                 //stop reading when end of file is reached
                 if (count != -1) {
-                    //prepare the buffer to read date from it
+                    //prepare buffer to reading data from it
                     mBuf.rewind();
-                    //read data bytes from buffer and display them as symbols
+                    //read data bytes from buffer and display them like symbols
                     for (int i = 0; i < count; i++) {
                         System.out.print(mBuf.get());
                     }
                 }
             } while (count != -1);
             System.out.println();
+        } catch (InvalidPathException e) {
+            System.out.println("Error of file path " + e);
         } catch (IOException e) {
             System.out.println("Error input-output " + e);
         }
