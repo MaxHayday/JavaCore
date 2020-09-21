@@ -16,7 +16,7 @@ public class DirList {
                 if (attributes.isDirectory())
                     System.out.print("<DIR> ");
                 else System.out.print("    ");
-                System.out.println(entry.getName(0));
+                System.out.println(entry.getName(1));
             }
         } catch (InvalidPathException e) {
             System.out.println("error path to the file " + e);
