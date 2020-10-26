@@ -17,7 +17,6 @@ public class Synch {
         }
     }
 }
-
 class Callme {
     synchronized void call(String msg) {
         System.out.print("[" + msg);
@@ -44,6 +43,8 @@ class Caller implements Runnable {
 
     @Override
     public void run() {
-        target.call(msg);
+        synchronized (target) {//synchronized block
+            target.call(msg);
+        }
     }
 }
