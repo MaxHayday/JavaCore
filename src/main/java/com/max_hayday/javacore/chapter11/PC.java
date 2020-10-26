@@ -13,9 +13,18 @@ public class PC {
 
     static class Q {
         int n;
+        boolean valueSet = false;
 
         synchronized int get() {
+            while (!valueSet)
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    System.out.println("Interrupted Exception is catch.");
+                }
             System.out.println("Received: " + n);
+            valueSet = false;
+            notify();
             return n;
         }
 
