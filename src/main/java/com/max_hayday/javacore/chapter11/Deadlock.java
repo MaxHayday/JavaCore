@@ -1,10 +1,6 @@
 package com.max_hayday.javacore.chapter11;
 
 public class Deadlock implements Runnable {
-    public static void main(String[] args) {
-        new Deadlock();
-    }
-
     A a = new A();
     B b = new B();
 
@@ -17,11 +13,14 @@ public class Deadlock implements Runnable {
 
     }
 
-
     @Override
     public void run() {
         b.bar(a);//get block for object b in second thread
         System.out.println("Back to the main thread");
+    }
+
+    public static void main(String[] args) {
+        new Deadlock();
     }
 
     static class A {

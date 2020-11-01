@@ -27,17 +27,17 @@ public class PCFixed {
         }
 
         synchronized void put(int n) {
-            while (valueSet) {
+            while (valueSet)
                 try {
                     wait();
                 } catch (InterruptedException e) {
                     System.out.println("Interrupted Exception is catch.");
                 }
-                this.n = n;
-                valueSet = true;
-                System.out.println("Sent: " + n);
-                notify();
-            }
+            this.n = n;
+            valueSet = true;
+            System.out.println("Sent: " + n);
+            notify();
+
         }
     }
 
