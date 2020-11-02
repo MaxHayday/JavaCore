@@ -40,7 +40,7 @@ class MyThread implements Runnable {
     public MyThread(Phaser phaser, String name) {
         this.phaser = phaser;
         this.name = name;
-        phaser.register();
+        this.phaser.register();
         new Thread(this).start();
     }
 
