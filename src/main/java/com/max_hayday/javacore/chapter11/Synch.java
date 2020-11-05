@@ -19,7 +19,7 @@ public class Synch {
 }
 
 class Callme {
-    void call(String msg) {
+    synchronized void call(String msg) {   //if remove synchronize this program can make problem rush threads
         System.out.print("[" + msg);
         try {
             Thread.sleep(1000);
@@ -44,8 +44,8 @@ class Caller implements Runnable {
 
     @Override
     public void run() {
-        synchronized (target) {//synchronized block
-            target.call(msg);
-        }
+        //      synchronized (target) {//synchronized block
+        target.call(msg);
+        //      }
     }
 }
