@@ -29,7 +29,7 @@ public class FooTest {
 
         }
 
-        public synchronized void second() {
+        public void second() {
             System.out.print("second");
             try {
                 Thread.sleep(100);
@@ -38,7 +38,7 @@ public class FooTest {
             }
         }
 
-        public synchronized void third() {
+        public void third() {
             System.out.print("third");
             try {
                 Thread.sleep(100);
