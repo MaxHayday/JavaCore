@@ -1,112 +1,104 @@
 package com.max_hayday.javacore.exercises.concurrency;
 
+import java.util.concurrent.Semaphore;
+
 public class FooTest {
     public static void main(String[] args) {
         Foo foo = new Foo();
-        MyThread1 thread1 = new MyThread1(foo, "A");
-        MyThread2 thread2 = new MyThread2(foo, "B");
-        MyThread3 thread3 = new MyThread3(foo, "C");
+        Semaphore semaphore = new Semaphore(3);
+        new MyThread1(semaphore, foo, "A");
+        new MyThread2(semaphore, foo, "B");
+        new MyThread3(semaphore, foo, "C");
 
-        try {
-            thread1.t.join();
-            thread2.t.join();
-            thread3.t.join();
-        } catch (InterruptedException e) {
-            System.out.println(e);
-        }
 
     }
 
     static class Foo {
-
         public void first() {
             System.out.print("first");
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                System.out.println(e);
-            }
-
         }
 
         public void second() {
             System.out.print("second");
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                System.out.println(e);
-            }
         }
 
         public void third() {
             System.out.print("third");
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                System.out.println(e);
-            }
-
         }
-
     }
 
     static class MyThread1 implements Runnable {
-        Foo f;
+        Semaphore semaphore;
         String name;
-        Thread t;
+        Foo f;
 
-        public MyThread1(Foo f, String name) {
+        public MyThread1(Semaphore semaphore, Foo f, String name) {
+            this.semaphore = semaphore;
             this.f = f;
             this.name = name;
-            t = new Thread(this);
-            t.start();
+            new Thread(this).start();
+
         }
 
         @Override
         public void run() {
-            synchronized (f) {
+            try {
+                semaphore.acquire();
                 f.first();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            semaphore.release();
         }
     }
 
     static class MyThread2 implements Runnable {
-        Foo f;
+        Semaphore semaphore;
         String name;
-        Thread t;
+        Foo f;
 
-        public MyThread2(Foo f, String name) {
+        public MyThread2(Semaphore semaphore, Foo f, String name) {
+            this.semaphore = semaphore;
             this.f = f;
             this.name = name;
-            t = new Thread(this);
-            t.start();
+            new Thread(this).start();
+
         }
 
         @Override
         public void run() {
-            synchronized (f) {
+            try {
+                semaphore.acquire();
                 f.second();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            semaphore.release();
         }
     }
 
     static class MyThread3 implements Runnable {
-        Foo f;
+        Semaphore semaphore;
         String name;
-        Thread t;
+        Foo f;
 
-        public MyThread3(Foo f, String name) {
+        public MyThread3(Semaphore semaphore, Foo f, String name) {
+            this.semaphore = semaphore;
             this.f = f;
             this.name = name;
-            t = new Thread(this);
-            t.start();
+            new Thread(this).start();
+
         }
 
         @Override
         public void run() {
-            synchronized (f) {
+            try {
+                semaphore.acquire();
                 f.third();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            semaphore.release();
         }
     }
 
