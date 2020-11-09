@@ -1,4 +1,4 @@
-package com.max_hayday.javacore.exercises.concurrency;
+package com.max_hayday.javacore.exercises.concurrency.exercise2;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
